@@ -1,0 +1,98 @@
+/* ================= v0.5 responsive layouts ================= */
+.lobbyHead,.lobbyFoot{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.6vh,16px)}
+
+/* ---------- PORTRAIT (phones and tablets held upright) ---------- */
+body.portrait #lobby{justify-content:center;align-items:stretch;padding:max(12px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+body.portrait .lobbyCol{width:100%;height:100%;justify-content:space-between;padding-top:calc(var(--vmin) * .14)}
+body.portrait .logo span{font-size:calc(var(--vmin) * .15)}
+body.portrait .logo .l2{font-size:calc(var(--vmin) * .19)}
+body.portrait .bestLine{font-size:calc(var(--vmin) * .05)}
+body.portrait .lobbyFoot{width:100%;max-width:560px;margin:0 auto;gap:calc(var(--vmin) * .035)}
+body.portrait #playBtn{width:100%;font-size:calc(var(--vmin) * .11)}
+body.portrait .menuRow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:calc(var(--vmin) * .022);width:100%}
+body.portrait .mBtn{width:auto;height:auto;aspect-ratio:1;border-radius:calc(var(--vmin) * .045);font-size:calc(var(--vmin) * .028)}
+body.portrait .mBtn svg{width:46%;height:46%}
+body.portrait .topRight .pill{font-size:calc(var(--vmin) * .045)}
+body.portrait .topLeft,body.portrait #pauseBtn{width:calc(var(--vmin) * .12);height:calc(var(--vmin) * .12)}
+/* panels become full-width sheets */
+body.portrait .screen.dim{align-items:flex-end;padding:max(30px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom))}
+body.portrait .panel{width:100%;max-height:calc(100% - 20px);border-radius:26px;padding:30px 12px 12px}
+body.portrait .panel.narrow{width:100%}
+body.portrait .ribbon{font-size:calc(var(--vmin) * .065)}
+body.portrait .pHead{flex-wrap:wrap;margin:-4px 0 10px;row-gap:8px}
+body.portrait .pHead .tabs{order:3;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:6px}
+body.portrait .tab{font-size:calc(var(--vmin) * .032);padding:.55em .2em;text-align:center}
+body.portrait .pHeadR{margin-left:auto}
+body.portrait .pill{font-size:calc(var(--vmin) * .042)}
+body.portrait .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:4px 2px 10px}
+body.portrait .card{padding:8px 8px 10px;gap:5px;border-radius:16px}
+body.portrait .card h3{font-size:calc(var(--vmin) * .034)}
+body.portrait .card p{display:none}
+body.portrait .card .icon{width:calc(var(--vmin) * .13);height:calc(var(--vmin) * .13);border-radius:14px}
+body.portrait .card .icon svg{width:64%;height:64%}
+body.portrait .card .stat{font-size:calc(var(--vmin) * .027);padding:2px 5px}
+body.portrait .lvTxt{font-size:calc(var(--vmin) * .028)}
+body.portrait .card .btn{font-size:calc(var(--vmin) * .036);padding:.5em .4em}
+body.portrait .card .thumb{max-width:100%}
+body.portrait .boxCard .thumb{max-width:100%}
+body.portrait .chips{justify-content:center}
+/* locker: bottom sheet with 3 columns, the 3D cat stays visible above it */
+body.portrait #locker{align-items:flex-end;padding:0 6px max(6px,env(safe-area-inset-bottom))}
+body.portrait .panel.dock{width:100%;height:58%;max-height:58%}
+body.portrait .grid.small{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+body.portrait #lockTabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+/* results: AGAIN gets the full width, SHOP/HOME under it */
+body.portrait .resBtns{flex-wrap:wrap;gap:10px}
+body.portrait .resBtns #againBtn{order:-1;flex:1 1 100%;font-size:calc(var(--vmin) * .1)}
+body.portrait .resBtns .btn:not(#againBtn){flex:1 1 40%}
+body.portrait .bigDist{font-size:calc(var(--vmin) * .2)}
+body.portrait .resCoins{font-size:calc(var(--vmin) * .06);flex-wrap:wrap;justify-content:center}
+body.portrait .offer{flex-direction:column;align-items:stretch;text-align:center}
+body.portrait .offerBtns .btn{flex:1}
+/* HUD */
+body.portrait #dist{font-size:calc(var(--vmin) * .13)}
+body.portrait #actBtn{width:calc(var(--vmin) * .28);height:calc(var(--vmin) * .28);right:max(16px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom))}
+body.portrait #actBtn .actIcon.txt{font-size:calc(var(--vmin) * .07)}
+body.portrait #track{width:calc(100vw - 32px);top:calc(max(12px,env(safe-area-inset-top)) + var(--vmin) * .17)}
+body.portrait #zoneCard{top:calc(max(12px,env(safe-area-inset-top)) + var(--vmin) * .26);width:calc(100vw - 32px)}
+body.portrait #banner{font-size:calc(var(--vmin) * .11);top:40%}
+body.portrait #tutText{font-size:calc(var(--vmin) * .085);white-space:normal;width:92vw}
+body.portrait .lbList{max-height:56vh}
+body.portrait .setRow{font-size:calc(var(--vmin) * .036)}
+body.portrait input[type=range]{width:44vw}
+/* big portrait screens (tablets) get a centered, narrower sheet */
+@media (min-width:600px){body.portrait .panel{width:min(640px,100%)}body.portrait .screen.dim{align-items:center}body.portrait .grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---------- SHORT LANDSCAPE (phones held sideways) ---------- */
+body.short .screen.dim{padding:6px max(10px,env(safe-area-inset-right)) 6px max(10px,env(safe-area-inset-left))}
+body.short .panel{padding:24px 12px 10px;max-height:calc(100% - 14px);margin-top:12px}
+body.short .ribbon{top:-18px;font-size:18px;padding:.12em .9em}
+body.short .pHead{margin:-6px 0 8px}
+body.short .tab{font-size:12px;padding:.4em .7em}
+body.short .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+body.short .card{padding:6px 8px 8px;gap:4px}
+body.short .card p{display:none}
+body.short .card .icon{width:40px;height:40px;border-radius:12px}
+body.short .card .icon svg{width:28px;height:28px}
+body.short .card h3{font-size:13px}
+body.short .card .stat{font-size:11px;padding:1px 6px}
+body.short .card .btn{font-size:13px;padding:.4em .6em}
+body.short .card .thumb{max-width:110px}
+body.short .grid.small{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+body.short .setList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+body.short .setRow{padding:5px 10px;font-size:12px;gap:8px}
+body.short input[type=range]{width:min(150px,22vw)}
+body.short .lbList{max-height:calc(100vh - 150px)}
+body.short .lobbyCol{gap:6px}
+body.short .logo span{font-size:clamp(34px,7vw,56px)}
+body.short .logo .l2{font-size:clamp(42px,9vw,70px)}
+body.short #playBtn{font-size:clamp(24px,4.5vw,34px)}
+body.short .mBtn{width:clamp(52px,8.5vw,64px);height:clamp(52px,8.5vw,64px);font-size:10px;border-radius:14px}
+body.short #actBtn{width:clamp(80px,22vh,100px);height:clamp(80px,22vh,100px);bottom:max(14px,env(safe-area-inset-bottom))}
+body.short #dist{font-size:clamp(28px,9vh,44px)}
+body.short #tutText{font-size:clamp(24px,8vh,40px)}
+body.short .panel.dock{width:min(480px,62vw)}
+.pHead > .close{margin-left:auto}
+body.portrait .resBtns .btn:not(#againBtn){font-size:calc(var(--vmin) * .042)}
+body.portrait .mis{font-size:calc(var(--vmin) * .03)}
+body.portrait .lbRow{font-size:calc(var(--vmin) * .034)}
