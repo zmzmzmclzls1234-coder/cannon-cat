@@ -1,0 +1,67 @@
+/* ================= v0.6: combo, rivals, daily, desktop scale ================= */
+/* combo badge: left side of the play area, ring drains as the chain window runs out */
+#combo{position:absolute;left:max(16px,env(safe-area-inset-left));top:40%;width:clamp(84px,10vw,112px);aspect-ratio:1;display:grid;place-items:center;align-content:center;
+  background:var(--ink);border:4px solid var(--ink);border-radius:50%;color:#fff;box-shadow:0 6px 0 rgba(0,0,0,.35);
+  transform:scale(0) rotate(-20deg);opacity:0;transition:transform .22s cubic-bezier(.3,1.6,.5,1),opacity .18s;pointer-events:none;--k:1;--cc:#fff}
+#combo.on{transform:scale(1) rotate(-6deg);opacity:1}
+#combo .cRing{position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(var(--cc) calc(var(--k) * 360deg),rgba(255,255,255,.12) 0);
+  -webkit-mask:radial-gradient(circle,transparent 62%,#000 63%);mask:radial-gradient(circle,transparent 62%,#000 63%)}
+#combo b{font-family:var(--f);font-weight:400;font-size:clamp(30px,4vw,44px);line-height:.95;color:var(--cc);text-shadow:var(--o2);position:relative}
+#combo em{font-style:normal;font-family:var(--f);font-size:clamp(10px,1.1vw,12px);letter-spacing:.06em;position:relative}
+#combo small{font-family:var(--f);font-size:clamp(11px,1.2vw,13px);color:var(--yellow);position:relative}
+#combo.hit{animation:comboHit .28s cubic-bezier(.3,1.8,.5,1)}
+#combo.lost{animation:comboLost .4s ease-out}
+@keyframes comboHit{0%{transform:scale(1.35) rotate(4deg)}100%{transform:scale(1) rotate(-6deg)}}
+@keyframes comboLost{0%{transform:scale(1) rotate(-6deg);opacity:1;filter:grayscale(1)}100%{transform:scale(.4) rotate(-30deg) translateY(40px);opacity:0}}
+
+/* next rival pill under the distance */
+#rival{display:none;margin-top:6px;font-size:clamp(11px,1.3vw,14px);padding:.25em .7em .25em .45em;gap:.35em;align-items:center;max-width:min(260px,46vw);white-space:nowrap;overflow:hidden}
+#rival.on{display:inline-flex}
+#rival i{width:.9em;height:.9em;border-radius:3px;border:2px solid var(--ink);flex:none}
+#rival span{color:#9a8f86}
+#rival b{font-weight:400;overflow:hidden;text-overflow:ellipsis}
+#rival.hit{animation:pop .35s cubic-bezier(.2,1.6,.4,1)}
+
+/* results extras */
+#resExtra{display:none;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 2px}
+#resExtra.on{display:flex}
+#resExtra .chip{font-family:var(--f);font-size:clamp(11px,1.3vw,14px);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:.25em .8em;box-shadow:0 3px 0 var(--ink);text-shadow:var(--o2)}
+#resExtra .chip b{font-weight:400;color:var(--yellow)}
+#resExtra .c1{background:#b05cff}#resExtra .c2{background:#3aa3ff}
+
+/* daily gift */
+.dailyGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:4px 0 10px;width:100%}
+.dTile{position:relative;background:#fff;border:4px solid var(--ink);border-radius:16px;box-shadow:0 4px 0 var(--ink);padding:8px 4px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--f)}
+.dTile small{font-size:11px;color:#9a8f86}
+.dTile em{font-style:normal;font-size:15px}
+.dTile.big{grid-column:span 2;background:#e9f4ff}
+.dTile.now{background:var(--yellow);animation:dPulse 1s ease-in-out infinite}
+.dTile.now small{color:var(--ink)}
+.dTile.got{background:#d8f5d4;opacity:.8}
+.dTile.pop{animation:pop .45s cubic-bezier(.2,1.8,.4,1)}
+.dCoin .coin{width:30px;height:30px;display:block}
+.dBox{width:44px;height:36px;border:3px solid var(--ink);border-radius:6px;background:linear-gradient(#7fc6ff 0 34%,var(--ink) 34% 40%,#3aa3ff 40%);position:relative}
+.dBox::after{content:'';position:absolute;left:50%;top:-3px;bottom:-3px;width:7px;transform:translateX(-50%);background:#ff4b4b;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+.dCk{position:absolute;right:-6px;top:-8px;width:24px;height:24px;border-radius:50%;background:var(--green);border:3px solid var(--ink);color:#fff;font-size:13px;display:grid;place-items:center;font-weight:400}
+#dailyClaim{width:100%}
+#dailyClaim:disabled{filter:grayscale(1);opacity:.6;font-size:clamp(16px,2.4vw,22px)}
+@keyframes dPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+body.portrait .dailyGrid{gap:8px}
+body.portrait #combo{top:auto;bottom:calc(max(24px,env(safe-area-inset-bottom)) + var(--vmin) * .05);left:max(16px,env(safe-area-inset-left));width:calc(var(--vmin) * .24)}
+body.short #combo{top:34%;width:78px}
+body.short #combo b{font-size:28px}
+
+/* big desktop screens: scale UI with the window (1 at 1280x720, up to 1.7) */
+body.wide .panel,body.wide .lobbyCol,body.wide .topRight,body.wide .topLeft,body.wide #distBox,body.wide .hudR,
+body.wide #actBtn,body.wide #combo,body.wide #mToast{zoom:var(--uiz,1)}
+body.wide .panel{max-height:calc((100vh - 40px) / var(--uiz,1))}
+body.short .dailyGrid{grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:0 0 6px}
+body.short .dTile{padding:5px 2px 4px;border-radius:12px;gap:2px}
+body.short .dTile.big{grid-column:auto}
+body.short .dTile em{font-size:12px}
+body.short .dBox{width:30px;height:26px}
+body.short .dCoin .coin{width:22px;height:22px}
+body.short #dailyClaim{font-size:22px;padding:.25em 1em}
+body.short #daily .hint{margin:2px 0 6px}
+body.portrait #rival{position:fixed;left:max(16px,env(safe-area-inset-left));top:calc(max(12px,env(safe-area-inset-top)) + var(--vmin) * .255);margin:0;font-size:calc(var(--vmin) * .032)}
+body.wide #toast{font-size:calc(15px * var(--uiz,1))}
