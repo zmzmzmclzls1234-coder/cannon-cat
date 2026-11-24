@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: cannon-cat
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: BOT_COUNT
+        value: "40"
+      - key: BOTS_LABELED
+        value: "true"
+      - key: ALLOWED_ORIGINS
+        value: "*"
